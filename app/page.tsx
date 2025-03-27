@@ -278,21 +278,24 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="flex flex-col items-start justify-center h-[60%] mt-[6rem] px-10">
+    <div className="flex flex-col items-start justify-center min-h-[100vh] text-white px-10">
       <div className="w-full">
-        <h1 className="text-4xl font-bold tracking-tight mb-8">
+        <h1 className="text-4xl font-bold tracking-tight  mb-8">
           Simplifying startup scouting
         </h1>
         <Button 
           size="lg" 
-          variant="outline"
-          className="text-lg bg-blue-600 rounded-[0.3rem] px-8"
+          variant="default"
+          className="text-lg bg-blue-600 text-white hover:bg-blue-800 rounded-[0.3rem] px-8"
           onClick={() => setShowForm(true)}
         >
           Register as an Early User
         </Button>
 
         <Dialog open={showForm} onOpenChange={setShowForm}>
+          <DialogHeader hidden>
+            <DialogTitle>Registration</DialogTitle>
+          </DialogHeader>
           <DialogContent className="sm:max-w-[425px]">
             {registered ? (
               <div className="text-center py-6 space-y-4">
@@ -466,7 +469,7 @@ export default function LandingPage() {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-blue-600 rounded-[0.3rem]"
+                    className="w-full bg-blue-600 hover:bg-blue-800 text-white rounded-[0.3rem]"
                   >
                     Register
                   </Button>
