@@ -246,7 +246,7 @@ const DAFTAR_OPTIONS = [
   { value: "private-equity", label: "Private Equity" },
   { value: "angel-investor", label: "Angel Investor" },
   { value: "venture-capitalist", label: "Venture Capitalist" },
-  { value: "micro-vc", label: "Micro VC"},
+  { value: "micro-vc", label: "Micro VC" },
 ] as const
 
 const formSchema = z.object({
@@ -254,7 +254,7 @@ const formSchema = z.object({
   lastName: z.string().min(2, "Last name is required"),
   email: z.string().email("Invalid email address"),
   country: z.string().min(1, "Country is required"),
-  investorsDaftar: z.string().min(2, "Investor's Daftar is required"),
+  daftar: z.string().min(2, "Investor's Daftar is required"),
 })
 
 export default function LandingPage() {
@@ -268,12 +268,19 @@ export default function LandingPage() {
       lastName: "",
       email: "",
       country: "",
-      investorsDaftar: "",
+      daftar: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
+    await fetch('/api/', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
     setRegistered(true)
   }
 
@@ -283,8 +290,8 @@ export default function LandingPage() {
         <h1 className="text-4xl font-bold tracking-tight  mb-8">
           Simplifying startup scouting
         </h1>
-        <Button 
-          size="lg" 
+        <Button
+          size="lg"
           variant="default"
           className="text-lg bg-blue-600 text-white hover:bg-blue-800 rounded-[0.3rem] px-8"
           onClick={() => setShowForm(true)}
@@ -410,7 +417,7 @@ export default function LandingPage() {
 
                   <FormField
                     control={form.control}
-                    name="investorsDaftar"
+                    name="daftar"
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
                         <FormLabel>Daftar</FormLabel>
@@ -443,7 +450,7 @@ export default function LandingPage() {
                                       value={daftar.value}
                                       key={daftar.value}
                                       onSelect={(value) => {
-                                        form.setValue("investorsDaftar", value)
+                                        form.setValue("daftar", value)
                                       }}
                                     >
                                       <Check
@@ -467,8 +474,8 @@ export default function LandingPage() {
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-blue-600 hover:bg-blue-800 text-white rounded-[0.3rem]"
                   >
                     Register
