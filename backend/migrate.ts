@@ -1,14 +1,14 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { client } from "@/backend/database";
-
+import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { db } from "./database"; // Ensure correct path
 
 async function main() {
-    await migrate(drizzle(client), {
-      migrationsFolder: "@/backend/drizzle/migrations",
-    });
-  
-    await client.end();
+  try {
+    await migrate(db, { migrationsFolder: "./backend/drizzle/migrations" });
+    console.log("✅ Migration completed successfully!");
+  } catch (error) {
+    console.error("❌ Migration failed:", error);
+    process.exit(1);
   }
-  
-  main();
+}
+
+main();
