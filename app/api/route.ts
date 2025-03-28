@@ -5,7 +5,7 @@ import { preRegister } from "@/backend/drizzle/models/pre-register";
 export async function POST(req: NextRequest) {
     try {
         const data = await req.json();
-        const { firstName, lastName, email, country, daftar } = await data;
+        const { firstName, lastName, email, country, daftar } = data;
         await db.insert(preRegister).values({ firstName, lastName, email, country, daftar }).returning()
         return NextResponse.json({ message: 'Added to the pre-registration' }, { status: 200 })
     }

@@ -33,6 +33,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Check, ChevronsUpDown } from "lucide-react"
+import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
 const COUNTRIES = [
@@ -274,14 +275,27 @@ export default function LandingPage() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    await fetch('/api/', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    })
-    setRegistered(true)
+    try{
+      const response = await fetch('/api/', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+
+      if(!response.ok){
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Registration failed')
+      }
+      setRegistered(true)
+    }catch(error: any){
+      // console.error("Submission error: ", error)
+      // form.setError('email', {message: error.message})
+      toast.error(error.message || "An unexpected error occurred");
+
+    }
+    
   }
 
   return (
