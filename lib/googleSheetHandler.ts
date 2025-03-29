@@ -32,7 +32,7 @@ export async function googleSheet(formData: data) {
     }
     )
     const sheets = google.sheets({ version: "v4", auth });
-    const spreadsheetId = "1oQGJ5K7KdnXYi7UlIizzEEU9_62lG3VBvucMiQBA6HU";
+    const spreadsheetId = process.env.SHEET_ID as string | "1oQGJ5K7KdnXYi7UlIizzEEU9_62lG3VBvucMiQBA6HU";
     // Determine which sheet to use based on the URL
     const dateOfSubmission = formatDate()
 
