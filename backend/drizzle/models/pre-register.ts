@@ -8,6 +8,8 @@ export const preRegister = pgTable("pre-registered-users", {
     lastName: text("last_name").notNull(),
     email: text("email").unique().notNull(),
     country: text("country").notNull(),
-    daftar: text("daftar").notNull()
+    daftar: text("daftar").notNull(),
+    stage: text("stage").notNull(),
+    idealStartup: text("ideal_startup").notNull()
 }
 )

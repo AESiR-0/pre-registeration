@@ -33,7 +33,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Check, ChevronsUpDown } from "lucide-react"
-import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
 const COUNTRIES = [
@@ -236,7 +235,15 @@ const COUNTRIES = [
   { value: 'zw', label: 'Zimbabwe' }
 ] as const
 
-// Add this constant for daftar options
+const STAGE_OPTIONS = [
+  { value: "idea", label: "Idea Stage" },
+  { value: "mvp", label: "Prototype to MVP" },
+  { value: "product", label: "Product Market Fit" },
+  { value: "growth", label: "Growth Stage" },
+]
+
+
+// Add this constant for stage options
 const DAFTAR_OPTIONS = [
   { value: "government-incubator", label: "Government Incubator" },
   { value: "private-incubator", label: "Private Incubator" },
@@ -256,12 +263,14 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   country: z.string().min(1, "Country is required"),
   daftar: z.string().min(2, "Investor's Daftar is required"),
+  stage: z.string().min(2, "Stage of the desired startup is required"),
+  idealStartup: z.string().min(2, "Enter Details for your Ideal Startup")
 })
 
 export default function LandingPage() {
   const [showForm, setShowForm] = useState(false)
   const [registered, setRegistered] = useState(false)
-
+  const [loading, setLoading] = useState(false)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -270,12 +279,15 @@ export default function LandingPage() {
       email: "",
       country: "",
       daftar: "",
+      stage: "",
+      idealStartup: ""
     },
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    try{
+    try {
+      setLoading(true)
       const response = await fetch('/api/', {
         method: "POST",
         headers: {
@@ -284,18 +296,20 @@ export default function LandingPage() {
         body: JSON.stringify(values)
       })
 
-      if(!response.ok){
+      if (!response.ok) {
+        setLoading(false)
         const errorData = await response.json();
         throw new Error(errorData.error || 'Registration failed')
       }
       setRegistered(true)
-    }catch(error: any){
+      setLoading(false)
+    } catch (error: any) {
       // console.error("Submission error: ", error)
       // form.setError('email', {message: error.message})
-      toast.error(error.message || "An unexpected error occurred");
+      console.error(error.message || "An unexpected error occurred");
 
     }
-    
+
   }
 
   return (
@@ -487,12 +501,83 @@ export default function LandingPage() {
                       </FormItem>
                     )}
                   />
-
+                  <FormField
+                    control={form.control}
+                    name="stage"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <FormLabel>Stage</FormLabel>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant="outline"
+                                role="combobox"
+                                className={cn(
+                                  "w-full justify-between",
+                                  !field.value && "text-muted-foreground"
+                                )}
+                              >
+                                {field.value
+                                  ? STAGE_OPTIONS.find((stage) => stage.value === field.value)?.label
+                                  : "Select stage"}
+                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-full p-0">
+                            <Command>
+                              <CommandInput placeholder="Search stage..." />
+                              <CommandList>
+                                <CommandEmpty>No stage found.</CommandEmpty>
+                                <CommandGroup>
+                                  {STAGE_OPTIONS.map((stage) => (
+                                    <CommandItem
+                                      value={stage.value}
+                                      key={stage.value}
+                                      onSelect={(value) => {
+                                        form.setValue("stage", value)
+                                      }}
+                                    >
+                                      <Check
+                                        className={cn(
+                                          "mr-2 h-4 w-4",
+                                          stage.value === field.value
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                        )}
+                                      />
+                                      {stage.label}
+                                    </CommandItem>
+                                  ))}
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="idealStartup"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Enter details about the startup you are looking for</FormLabel>
+                        <FormControl>
+                          <Input placeholder="" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <Button
                     type="submit"
+                    disabled={loading}
                     className="w-full bg-blue-600 hover:bg-blue-800 text-white rounded-[0.3rem]"
                   >
-                    Register
+                    {loading ? "Loading..." : "Register"}
                   </Button>
                 </form>
               </Form>

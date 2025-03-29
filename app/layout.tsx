@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Pitch Your Startup in 120 Seconds - Daftar",
@@ -24,7 +23,6 @@ export default function RootLayout({
         >
           <div className="flex min-h-screen flex-col">
             {children}
-            <Toaster richColors/>
           </div>
         </ThemeProvider>
       </body>

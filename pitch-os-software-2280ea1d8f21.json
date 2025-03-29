@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "pitch-os-software",
+  "private_key_id": "2280ea1d8f2110b641ce6167ffdb10fcdc1e5253",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDJIMq4kqV9EP8\nqOS3hxVnBzKT+TgUIbw6YJX9YuhIHoX+4fbAZpeuTwvODD0aFHq4wArSck3qwEDS\n1SLJMmUU3YFWfC6xpUBECSxBSfWHK8WkvtWPi7DnqQ8hLPmBEvbs7Fvc+bISedet\nxhcMVVaoX24RD8TaFHFs52J0DcYEKMipED+zWBdfA37m5B5kQsopF3EzMFJyRs12\n2Cms73p1/zIxPMUaREUawLFJgZYD3DzclTu4h55F5uVB97eVOcYTdjJGBAM4vJvq\nGPsh2QClQl7t7w+vc7NEq+ox7/NV6xNHCKa8/l45pqbD7Tw2Nnr/jqQ9YzfeM1O9\nQT5jZZptAgMBAAECggEADEzp47Md5nPeMTfoKtVd+P+QJZmo+kPiHH/oFG++moUq\nBxXxOtF8sCUVZmiJFXLDBZA9XmSMGscBjwiWR75gdr87ntr3CoWTFnbJjlf+HQYa\nUDcjOQgiH4gdhwbRt1wdqnN/mt82ZUm+2ZpJ66IZc0WIp5Sp4OE3ARlYsF4J5Esd\nktJPYxv3noN/lSaJEcbpQIuck8ogPpZz/SPLTSp1nLhCYtwtCxNo+CN1K2PvrmLa\n6brewI0Gq2M3Ghw6ohoHYyiFznUpBidVApe1m0qauxRorcwmxQW8H5Xi+h0r5FzO\nWGa9uvohu73dyMslwfsI1OlHuSlrx52qFGarhrUldQKBgQDwKqqJKdmyhh1tvrqO\nGPzndfbUOlMAOTJlBRI1qFq7pF4r8h2x1ONBoDgK1G7jDfyK5gYx/18itymXW0hR\nLSJgOkChIOKiddjmwp0xSdr91WtMC7S2rthldKid1TlVSo1Xx6Q66bawPiW8MUA5\naSrmk/8nIWvIxnCDhKS9cYcH5wKBgQDQAffDtfdwZ+tUG1PAfNm+yl/we8O5q187\nioNOvsFQ30U9VLbY0TfcxmvQm01hcwVay9/hKyK0qzDpLc6GbMKXiYVTPN38eT8a\nmsQYe/P4a6APFzkilN7nmnhDgBbbbI32qqRts68AmM824TJWVEcVQpdR05N6rdNw\nuHjQLn8wiwKBgAQ3y5zzFjazckreIaqjN7Xc9YPOrmx/lKn/h81Xcph/D4RYETtx\nULhzVuihyHzGXxwVZCB2qrYSX3GgEcoTL9pey4nI6RIPXcrXuikGcgkpOWQxhG/8\n7CIEBX4YI5Si5Y6YHANI3YOE4+bFOqqHdVBtYvrN9HWnPoygxL/rAYMbAoGBAKqW\nYo6TxijeYOWqP6Zl/eF1cPb1WVAE1mYrM4K5+CqN4OfqeMYZ1xltdPAw3WYlAWg0\nORgd2ymWF9ez5GLkATZr5vabvWYYPYNhF58I0M2T3kFiB05wDtqcGTMqchRj041O\n5ui86rGvoIjeaPzZwy4RXa4SuSlsMzKHZzU8XLz/AoGAGxZ0Qwx0PesDkNmWYTwr\n4mzxrXEqbykx/50d7gk5NUnjyOdFQr4HBBn4l7Qjd9XJOrPcuDcDhQz1+n827N9L\n6FTwNyV0V073PQVrikcv0fqs/PorEzWlF2wI3m3H4XbmQlkHiNKXcirg6PK7uXms\nAtJAm9tlAcs47IiHI29kj7c=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pre-registartion@pitch-os-software.iam.gserviceaccount.com",
+  "client_id": "111073244035543475500",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pre-registartion%40pitch-os-software.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
